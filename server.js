@@ -15,7 +15,13 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors({
-  origin: 'http://localhost:5173', // Frontend URL
+  origin: [
+    'http://localhost:5173', 
+    'http://127.0.0.1:5173', 
+    'http://localhost:5174',
+    'http://127.0.0.1:5174',
+    'https://lms.basketind.in'
+  ],
   credentials: true
 }));
 app.use(helmet());
@@ -62,7 +68,13 @@ const PORT = process.env.PORT || 5001;
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: 'http://localhost:5173',
+    origin: [
+      'http://localhost:5173', 
+      'http://127.0.0.1:5173', 
+      'http://localhost:5174',
+      'http://127.0.0.1:5174',
+      'https://lms.basketind.in'
+    ],
     methods: ['GET', 'POST']
   }
 });
